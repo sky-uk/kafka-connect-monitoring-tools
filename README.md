@@ -62,3 +62,21 @@ Configuration is achieved through setting the following environment variables.
 * KAFKA_CONNECT_URL - Required, example: https://example.com
 * SCHEMA_REGISTRY_URL - Required, example: http://example.com
 * METRICS_REFRESH_RATE - Optional, in seconds, defaults to 10
+
+#### To run locally
+```
+docker build . -t kafka-connect-monitoring-tools
+docker run /
+--env KAFKA_CONNECT_URL=https://example.com /
+--env METRICS_REFRESH_RATE=10 /
+--env SCHEMA_REGISTRY_URL=https://example.com /
+--env VALIDATE_SSL=false /
+--publish 7071:7071 kafka-connect-monitoring-tools
+```
+* Metrics available at http://localhost:7071/metrics
+
+#### To push to registry
+```
+docker tag kafka-connect-monitoring-tools registery:port/kafka-connect-monitoring-tools:1.0.0
+docker push registry:port/kafka-connect-monitoring-tools:1.0.0
+```
